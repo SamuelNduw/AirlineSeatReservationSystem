@@ -29,7 +29,67 @@ public class DBConnection {
     // Testing
     public static void main(String[] args) {
         DBConnection db = new DBConnection();
-
+        ArrayList<RecentBookingsItem> bookings = db.getUserRecentBookings();
+        for(RecentBookingsItem booking : bookings){
+            System.out.println(booking);
+        }
+    }
+    // Admin methods
+    // GET SYSTEM STATISTICS
+    public SystemItem getSystemStatistics(){
+        SystemItem stats = null;
+        try(Connection conn = DriverManager.getConnection(url, username, password)){
+            String sql = "{CALL getSystemStatistics()}";
+            int totalFlights = 0, totalUsers = 0, bookingsToday = 0;
+            CallableStatement cstmt = conn.prepareCall(sql);
+            ResultSet rs = null;
+            boolean hasResults = cstmt.execute();
+            while (hasResults) {
+                rs = cstmt.getResultSet();
+                if (rs.next()) {
+                    totalFlights = rs.getInt("total_flights");
+                    System.out.println("Total number of flights: " + totalFlights);
+                }
+                if (cstmt.getMoreResults()) {
+                    rs = cstmt.getResultSet();
+                    if (rs.next()) {
+                        totalUsers = rs.getInt("total_users");
+                        System.out.println("Total number of users: " + totalUsers);
+                    }
+                }
+                if (cstmt.getMoreResults()) {
+                    rs = cstmt.getResultSet();
+                    if (rs.next()) {
+                        bookingsToday = rs.getInt("bookings_today");
+                        System.out.println("Number of bookings made today: " + bookingsToday);
+                    }
+                }
+                stats = new SystemItem(totalFlights, totalUsers, bookingsToday);
+                hasResults = cstmt.getMoreResults();
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        return stats;
+    }
+    // GET USER RECENT BOOKINGS
+    public ArrayList<RecentBookingsItem> getUserRecentBookings(){
+        ArrayList<RecentBookingsItem> recentBookings = new ArrayList<>();
+        RecentBookingsItem booking = null;
+        try(Connection conn = DriverManager.getConnection(url, username, password)){
+            String sql = "{CALL getUserRecentBookings()}";
+            CallableStatement cstmt = conn.prepareCall(sql);
+            ResultSet rs = cstmt.executeQuery();
+            while(rs.next()){
+                String name = rs.getString("username");
+                int flightID = rs.getInt("flight_id");
+                booking = new RecentBookingsItem(flightID, name);
+                recentBookings.add(booking);
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        return recentBookings;
     }
 
     // Flight Management

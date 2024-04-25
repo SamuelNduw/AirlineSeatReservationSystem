@@ -85,8 +85,6 @@ public class ProfilePage extends JPanel {
 
         this.setVisible(true);
     }
-
-
 }
 
 class userDetailsContent extends JPanel{

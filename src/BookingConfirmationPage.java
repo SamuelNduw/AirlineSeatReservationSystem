@@ -1,13 +1,6 @@
 import Authentication.Auth;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 // Parent class for the Booking Confirmation Page
 class BookingConfirmationPage extends JPanel {
     // Encapsulation: private fields
@@ -140,6 +133,48 @@ class BookingConfirmationPage extends JPanel {
     }
 
 
+}
+class InfoTopPanel extends JPanel {
+    InfoTopPanel(String title, String info){
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.ipady = 10;
+        gbc.ipadx = 10;
+        this.setPreferredSize(new Dimension(200, 180));
+        this.setBackground(Color.decode("#dbd9d9"));
+        JLabel titleLabel = new JLabel(title);
+        titleLabel.setFont(new Font("Dialog", Font.BOLD, 18));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        this.add(titleLabel, gbc);
+        JLabel infoLabel = new JLabel(info);
+        infoLabel.setFont(new Font("Dialog", Font.BOLD, 35));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        this.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        this.add(infoLabel, gbc);
+    }
+}
+class InfoMidPanel extends JPanel{
+    InfoMidPanel(String airport, String time){
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.ipady = 10;
+        gbc.ipadx = 10;
+        this.setPreferredSize(new Dimension(200, 150));
+        this.setBackground(Color.decode("#dbd9d9"));
+        JLabel airportLabel = new JLabel(airport);
+        airportLabel.setFont(new Font("Dialog", Font.BOLD, 18));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        this.add(airportLabel,gbc);
+        JLabel timeLabel = new JLabel(time);
+        timeLabel.setFont(new Font("Dialog", Font.BOLD, 24));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        this.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        this.add(timeLabel, gbc);
+    }
 }
 
 

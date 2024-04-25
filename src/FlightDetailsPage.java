@@ -19,38 +19,7 @@ public class FlightDetailsPage extends JPanel {
     public FlightDetailsPage(Object[][] flights) {
         this.allFlights =  flights;
 
-
-
-        setBounds(0, 0, 950, 800);
-//        addComponentListener(new ComponentAdapter() {
-//            @Override
-//            public void componentShown(ComponentEvent e){
-//                DBConnection db = new DBConnection();
-//                ArrayList<FlightItem> retrievedFlights = db.retrieveAllFlights();
-//
-//                Object[][] flights = new Object[retrievedFlights.size()][8];
-//                for (int i = 0; i < retrievedFlights.size(); i++) {
-//                    FlightItem flight = retrievedFlights.get(i);
-//                    flights[i][0] = flight.getFlightNo();
-//                    flights[i][1] = flight.getAirline();
-//                    flights[i][2] = flight.getDepartureAirport();
-//                    flights[i][3] = flight.getArrivalAirport();
-//                    flights[i][4] = flight.getDepartureTime();
-//                    flights[i][5] = flight.getArrivalTime();
-//                    flights[i][6] = flight.getTotalSeats();
-//                    flights[i][7] = flight.getAvailableSeats();
-//                }
-//
-//                // Print the array to verify
-//                for(Object[] row : flights){
-//                    for(Object col : row){
-//                        System.out.println(col + " ");
-//                    }
-//                    System.out.println();
-//                }
-//            }
-//        });
-
+        this.setBounds(0, 0, 950, 800);
         this.setLayout(new BorderLayout());
         //this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         this.setBackground(Color.decode("#787878"));

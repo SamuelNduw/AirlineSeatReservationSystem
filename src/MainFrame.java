@@ -41,9 +41,14 @@ public class MainFrame extends JFrame implements ActionListener {
 
         // Nav directories Contents
 
-        // dashboard
+        // DASHBOARD
         navDashboardButton = new JButton();
-        navDashboardButton.addActionListener(this);
+        navDashboardButton.addActionListener(e ->{
+            mainPanel.removeAll();
+            mainPanel.add(new Dashboard());
+            mainPanel.revalidate();
+            mainPanel.repaint();
+        });
         navDashboardButton.setBorderPainted(false);
         navDashboardButton.setLayout(null);
         navDashboardButton.setPreferredSize(new Dimension(250, 60));
@@ -136,36 +141,6 @@ public class MainFrame extends JFrame implements ActionListener {
         bookingsText.setFont(new Font("Dialog", Font.BOLD, 18));
         navBookingsButton.add(bookingsText);
 
-        // intervention, threshold
-        navIntThrButton = new JButton();
-//        navIntThrButton.addActionListener(e -> {
-//            if(e.getSource() == navIntThrButton){
-//                mainPanel.removeAll();
-//                mainPanel.add(new SetIntThr(auth));
-//                mainPanel.revalidate();
-//                mainPanel.repaint();
-//            }
-//        });
-        navIntThrButton.setBorderPainted(false);
-        navIntThrButton.setLayout(null);
-        navIntThrButton.setPreferredSize(new Dimension(250, 60));
-        navIntThrButton.setBackground(Color.decode("#0D1826"));
-        navDirPanel.add(navIntThrButton);
-        JLabel intThrIcon = new JLabel(); // Icon
-        //intThrIcon.setIcon(new ImageIcon(getClass().getResource("Images/userIcon.png")));
-        intThrIcon.setBounds(20, 0, 80, 60);
-        navIntThrButton.add(intThrIcon);
-        JLabel intThrText = new JLabel("INTERVENTION"); // Text
-        intThrText.setBounds(100, 0, 150, 30);
-        intThrText.setForeground(Color.white);
-        intThrText.setFont(new Font("Dialog", Font.BOLD, 15));
-        navIntThrButton.add(intThrText);
-        JLabel intThrText2 = new JLabel("THRESHOLD"); // Text
-        intThrText2.setBounds(100, 30, 150, 30);
-        intThrText2.setForeground(Color.white);
-        intThrText2.setFont(new Font("Dialog", Font.BOLD, 15));
-        navIntThrButton.add(intThrText2);
-        navIntThrButton.setVisible(false);
 
         // Nav Bottom Buttons Panel
         JPanel actionsPanel = new JPanel();
@@ -251,11 +226,6 @@ public class MainFrame extends JFrame implements ActionListener {
 //        }
         return flights;
     }
-    // All seats in 2D array
-//    public Object[][] allSeats(){
-//
-//    }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {

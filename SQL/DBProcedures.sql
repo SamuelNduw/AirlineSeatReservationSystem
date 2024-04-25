@@ -262,6 +262,36 @@ END;
 //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE GetSystemStatistics()
+BEGIN
+    -- Total number of flights
+    SELECT COUNT(*) AS total_flights FROM Flights;
+
+    -- Total number of users
+    SELECT COUNT(*) AS total_users FROM Users;
+
+    -- Number of bookings made today
+    SELECT COUNT(*) AS bookings_today
+    FROM Bookings
+    WHERE DATE(booking_date) = CURDATE();
+END;
+//
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE GetUserRecentBookings()
+BEGIN
+    SELECT
+        U.name AS username,
+        B.flight_id
+    FROM Users U
+    JOIN Bookings B ON U.user_id = B.user_id
+    WHERE B.booking_date >= DATE_SUB(CURDATE(), INTERVAL 3 DAY);
+END;
+//
+DELIMITER ;
 
 
 
