@@ -11,6 +11,7 @@ public class ProfilePage extends JPanel {
         this.setBounds(0, 0, 950, 800);
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
 
+        // Contents on Left side
         leftPanel = new JPanel();
         leftPanel.setPreferredSize(new Dimension(400, 800));
         leftPanel.setLayout(new GridBagLayout());
@@ -34,6 +35,20 @@ public class ProfilePage extends JPanel {
         gbc.gridy = 2;
         gbc.insets = new Insets(0, 0, 20, 0);
         leftPanel.add(userEmail, gbc);
+        JButton bookingHistoryButton = new JButton("BOOKING HISTORY");
+        bookingHistoryButton.addActionListener(e ->{
+            this.removeAll();
+            this.add(new BookingsPage(auth));
+            this.revalidate();
+            this.repaint();
+        });
+        bookingHistoryButton.setFont(new Font("Dialog", Font.BOLD, 18));
+        bookingHistoryButton.setBackground(Color.decode("#bfa304"));
+        bookingHistoryButton.setForeground(Color.white);
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.insets = new Insets(80, 0, 20, 0);
+        leftPanel.add(bookingHistoryButton, gbc);
         JButton updateDetailsButton = new JButton("UPDATE DETAILS");
         updateDetailsButton.addActionListener(e ->{
             rightPanel.removeAll();
@@ -45,11 +60,12 @@ public class ProfilePage extends JPanel {
         updateDetailsButton.setBackground(Color.decode("#33b8ff"));
         updateDetailsButton.setForeground(Color.white);
         gbc.gridx = 0;
-        gbc.gridy = 5;
-        gbc.insets = new Insets(80, 0, 20, 0);
+        gbc.gridy = 6;
+        gbc.insets = new Insets(10, 0, 20, 0);
         leftPanel.add(updateDetailsButton, gbc);
         this.add(leftPanel);
 
+        // Contents on Right Side
         rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.PAGE_AXIS));
         JPanel flowPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 20));

@@ -368,7 +368,7 @@ public class DBConnection {
                 String departureTime = rs.getString("departure_time");
                 String arrivalTime = rs.getString("arrival_time");
                 String seatNumber = rs.getString("seat_number");
-                double paymentAmount = rs.getDouble("payment_amount");
+                double paymentAmount = rs.getDouble("amount");
                 String paymentMethod = rs.getString("payment_method");
                 String paymentDate = rs.getString("payment_date");
 
