@@ -35,6 +35,7 @@ public class ProfilePage extends JPanel {
         gbc.gridy = 2;
         gbc.insets = new Insets(0, 0, 20, 0);
         leftPanel.add(userEmail, gbc);
+        // Removes opens the BookingsPage
         JButton bookingHistoryButton = new JButton("BOOKING HISTORY");
         bookingHistoryButton.addActionListener(e ->{
             this.removeAll();
@@ -49,6 +50,7 @@ public class ProfilePage extends JPanel {
         gbc.gridy = 5;
         gbc.insets = new Insets(80, 0, 20, 0);
         leftPanel.add(bookingHistoryButton, gbc);
+        // Brings you to the edit details page
         JButton updateDetailsButton = new JButton("UPDATE DETAILS");
         updateDetailsButton.addActionListener(e ->{
             rightPanel.removeAll();
@@ -87,6 +89,7 @@ public class ProfilePage extends JPanel {
     }
 }
 
+// this panel shows the user details on the right side of the screen
 class userDetailsContent extends JPanel{
     userDetailsContent(String title, String value, String color){
         this.setPreferredSize(new Dimension(500, 100));
@@ -112,6 +115,7 @@ class userDetailsContent extends JPanel{
     }
 }
 
+// This panel is for the edit details, it contains form where new details are inputted
 class editDetailsPanel extends JPanel{
     editDetailsPanel(Auth auth){
         this.setBounds(0, 0, 500, 800);
@@ -163,6 +167,7 @@ class editDetailsPanel extends JPanel{
         JButton updateButton = new JButton("UPDATE");
         updateButton.addActionListener(e -> {
             // Update details
+            // send the new user information to the database
             DBConnection db = new DBConnection();
             db.updateUserDetails(auth.getUserID(), usernameTextField.getText(), emailTextField.getText(), contactTextField.getText());
             auth.setUsername(usernameTextField.getText());
@@ -174,7 +179,7 @@ class editDetailsPanel extends JPanel{
             for(Window window : windows){
                 window.dispose();
             }
-            // Open new Main Window
+            // Open new Main Window (Home)
             new MainFrame(auth);
         });
         updateButton.setFont(new Font("Dialog", Font.BOLD, 18));

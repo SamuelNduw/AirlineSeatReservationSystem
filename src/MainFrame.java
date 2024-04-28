@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class MainFrame extends JFrame implements ActionListener {
+public class MainFrame extends JFrame {
     JButton navDashboardButton;
     JButton navProfileButton;
     JButton navAllFlightsButton;
@@ -227,17 +227,4 @@ public class MainFrame extends JFrame implements ActionListener {
         return flights;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-            // LOG OUT
-            if(e.getSource() == logOutButton){
-//                mainPanel.removeAll();
-//                mainPanel.add(new ReportPanel());
-//                mainPanel.revalidate();
-//                mainPanel.repaint();
-            }
-
-
-    }
 }

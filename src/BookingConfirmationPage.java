@@ -110,7 +110,7 @@ class BookingConfirmationPage extends JPanel {
 
             // Show next page
             this.removeAll();
-            this.add(new PaymentPageGUI(auth, flightInfo, seatInfo, bookingID, finalCost));
+            this.add(new PaymentPageGUI(auth, bookingID, finalCost));
             this.revalidate();
             this.repaint();
         });

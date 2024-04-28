@@ -29,7 +29,6 @@ public class FlightSearchPage extends JPanel{
         JPanel searchCriteriaPanel = new JPanel(new GridBagLayout());
         searchCriteriaPanel.setBorder(BorderFactory.createEmptyBorder(10, 7, 10, 7));
         searchCriteriaPanel.setBackground(Color.LIGHT_GRAY);
-//        searchCriteriaPanel.setPreferredSize(new Dimension(950, 100));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -143,7 +142,7 @@ public class FlightSearchPage extends JPanel{
     }
 
     private Object[][] getAllFlights(String departure, String arrival, String departureDate, String seatClass) {
-
+        // Retrieve flights from the database as an ArrayList, then put them into the 2D array and return the array
         DBConnection db = new DBConnection();
         ArrayList<FlightItem> retrievedFlights = db.searchFlights(departure, arrival, departureDate);
         allFlights = new Object[retrievedFlights.size()][8];

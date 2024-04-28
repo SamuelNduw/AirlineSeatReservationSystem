@@ -57,12 +57,11 @@ public class SignInPanel extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(null, "You left a text field empty!", "Submission Error", JOptionPane.ERROR_MESSAGE);
             }else{
 
-                // Query hashed password and salt
+                // Retrieve password and compare it to the inputted password
                 DBConnection db = new DBConnection();
                 String passwordRet = db.getPasswordInfo(emailVal);
+                // Login user
                 Auth auth = db.loginUser(emailVal, passwordVal);
-
-
 
                 if(passwordVal.equals(passwordRet)){
                     // Dispose Window
@@ -70,7 +69,7 @@ public class SignInPanel extends JPanel implements ActionListener {
                     for(Window window : windows){
                         window.dispose();
                     }
-                    // Open Main Window
+                    // Open Main Window (Home)
                     new MainFrame(auth);
 
                     JOptionPane.showMessageDialog(null, "You have successfully Signed In.", null, JOptionPane.INFORMATION_MESSAGE);

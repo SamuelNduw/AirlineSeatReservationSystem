@@ -11,7 +11,7 @@ public class PaymentPageGUI extends JPanel {
     private JComboBox<String> methodComboBox;
     private JButton payButton;
 
-    public PaymentPageGUI(Auth auth, FlightItem2 flightInfo, SeatItem seatInfo, int bookingID, double cost) {
+    public PaymentPageGUI(Auth auth, int bookingID, double cost) {
         this.setBounds(0, 0, 950, 800);
         setLayout(new GridBagLayout());
 
@@ -84,9 +84,10 @@ public class PaymentPageGUI extends JPanel {
         payButton.addActionListener(e -> {
                 String selectedMethod = (String) methodComboBox.getSelectedItem();
                 // Process Payment
+                // Send the values to the database and make payment
                 DBConnection db = new DBConnection();
                 db.processPayment(bookingID, cost, selectedMethod);
-                // Send user to beginning
+                // Send user to beginning (Home)
                 this.removeAll();
                 this.add(new FlightSearchPage(auth));
                 this.revalidate();
